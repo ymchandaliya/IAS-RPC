@@ -11,7 +11,7 @@ def foo(par_1, ):
 	for i in details["parameters"]:
 		dataSent += i['parameter_name']+"="+str(pars[j])+"-"+i['data_type']+','
 		j += 1
-		dataSent +=  details['return_type']
+	dataSent +=  details['return_type']
 	print(dataSent)
 	s = socket.socket()
 	port = 12345
@@ -31,7 +31,7 @@ def bar(par_1, par_2, ):
 	for i in details["parameters"]:
 		dataSent += i['parameter_name']+"="+str(pars[j])+"-"+i['data_type']+','
 		j += 1
-		dataSent +=  details['return_type']
+	dataSent +=  details['return_type']
 	print(dataSent)
 	s = socket.socket()
 	port = 12345
@@ -51,7 +51,7 @@ def random_rating():
 	for i in details["parameters"]:
 		dataSent += i['parameter_name']+"="+str(pars[j])+"-"+i['data_type']+','
 		j += 1
-		dataSent +=  details['return_type']
+	dataSent +=  details['return_type']
 	print(dataSent)
 	s = socket.socket()
 	port = 12345

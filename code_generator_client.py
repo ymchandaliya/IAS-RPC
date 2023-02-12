@@ -42,7 +42,7 @@ for i in functions:
     clientFile.write("\tfor i in details[\"parameters\"]:\n")
     clientFile.write("\t\tdataSent += i['parameter_name']+\"=\"+str(pars[j])+\"-\"+i['data_type']+','\n")
     clientFile.write("\t\tj += 1\n")
-    clientFile.write("\t\tdataSent +=  details['return_type']\n")
+    clientFile.write("\tdataSent +=  details['return_type']\n")
     clientFile.write("\tprint(dataSent)\n")
 
     # print(dataSent)

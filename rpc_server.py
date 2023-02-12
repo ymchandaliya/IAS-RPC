@@ -31,7 +31,32 @@ while True:
   print(params)  
   print(retType)  
 
-  c.send('Thank you for connecting'.encode())
+  paramSent = []
+  for i in params:
+    type_param = i.split('-')[1]
+    x = (i.split('=')[1].split('-')[0])
+    if(i.split('=')[1].split('-')[1] == 'int'):
+      x = int(x)
+    paramSent.append(x)    
+    # print(i.split('=')[1].split('-')[0])
+  print(paramSent)
+
+  execString = funcName + "("
+
+  for i in range(len(paramSent)):
+    execString += "paramSent[" + str(i) + "], "
+  execString += ")"
+
+  print(execString)
+  res = eval(execString)
+  print(res)
+
+
+
+
+
+
+  c.send(str(res).encode())
  
   # Close the connection with the client
   c.close()
