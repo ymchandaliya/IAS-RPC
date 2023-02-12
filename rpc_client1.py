@@ -1,9 +1,9 @@
 import socket
 import json
 
-def foo(par_1, ):
-	pars = [par_1, ]
-	details = {'procedure_name': 'foo', 'parameters': [{'parameter_name': 'par_1', 'data_type': 'int'}], 'return_type': 'str'}
+def boo(par_1):
+	pars = [par_1]
+	details = {'procedure_name': 'boo', 'parameters': [{'parameter_name': 'par_1', 'data_type': 'int'}], 'return_type': 'str'}
 	dataSent = None
 	func = details['procedure_name']
 	dataSent = func+'$'
@@ -21,8 +21,8 @@ def foo(par_1, ):
 	return res
 	s.close()
 
-def bar(par_1, par_2, ):
-	pars = [par_1, par_2, ]
+def bar(par_1, par_2):
+	pars = [par_1, par_2]
 	details = {'procedure_name': 'bar', 'parameters': [{'parameter_name': 'par_1', 'data_type': 'int'}, {'parameter_name': 'par_2', 'data_type': 'str'}], 'return_type': 'int'}
 	dataSent = None
 	func = details['procedure_name']

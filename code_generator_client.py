@@ -14,10 +14,15 @@ for i in functions:
     clientFile.write("def " + funcName+"(")
     pars = []
     paramString = ""
-    for j in i['parameters']:
-        clientFile.write(j['parameter_name'] + ', ')
-        pars.append(j['parameter_name'])
-        paramString += j['parameter_name'] + ', '
+    params_size = len(i['parameters'])
+    for j in range(params_size):
+        if j != params_size - 1:
+            clientFile.write(i['parameters'][j]['parameter_name'] + ', ')
+            paramString += i['parameters'][j]['parameter_name'] + ', '
+        else:
+            clientFile.write(i['parameters'][j]['parameter_name'])
+            paramString += i['parameters'][j]['parameter_name']
+        pars.append(i['parameters'][j]['parameter_name'])
     clientFile.write("):\n")
     
     dataSent = {"procedure_name":funcName, "parameters":[], "return_type":i["return_type"]}

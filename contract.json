@@ -1,7 +1,7 @@
 {
     "remote_procedures":[
         {
-            "procedure_name": "foo",
+            "procedure_name": "boo",
             "parameters": [
                 {
                     "parameter_name":"par_1",

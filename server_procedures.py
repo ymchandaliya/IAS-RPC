@@ -1,8 +1,9 @@
 import random
 
 
-def foo(i):
+def boo(i):
     return "Hello " + str(i)
+
 
 
 def bar(i, s):
