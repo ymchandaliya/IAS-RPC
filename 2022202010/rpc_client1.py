@@ -8,12 +8,15 @@ def boo(par_1):
 	func = details['procedure_name']
 	dataSent = func+'$'
 	j = 0
-	for i in range(len(pars)):
-		details['parameters'][i]['value'] = pars[i]
+	for i in details["parameters"]:
+		dataSent += i['parameter_name']+"="+str(pars[j])+"-"+i['data_type']+','
+		j += 1
+	dataSent +=  details['return_type']
+	print(dataSent)
 	s = socket.socket()
 	port = 12345
 	s.connect(('127.0.0.1', port))
-	s.send(str(details).encode())
+	s.send(dataSent.encode())
 	res =  s.recv(1024).decode()
 	return res
 	s.close()
@@ -25,12 +28,15 @@ def bar(par_1, par_2):
 	func = details['procedure_name']
 	dataSent = func+'$'
 	j = 0
-	for i in range(len(pars)):
-		details['parameters'][i]['value'] = pars[i]
+	for i in details["parameters"]:
+		dataSent += i['parameter_name']+"="+str(pars[j])+"-"+i['data_type']+','
+		j += 1
+	dataSent +=  details['return_type']
+	print(dataSent)
 	s = socket.socket()
 	port = 12345
 	s.connect(('127.0.0.1', port))
-	s.send(str(details).encode())
+	s.send(dataSent.encode())
 	res =  s.recv(1024).decode()
 	return res
 	s.close()
@@ -42,12 +48,15 @@ def random_rating():
 	func = details['procedure_name']
 	dataSent = func+'$'
 	j = 0
-	for i in range(len(pars)):
-		details['parameters'][i]['value'] = pars[i]
+	for i in details["parameters"]:
+		dataSent += i['parameter_name']+"="+str(pars[j])+"-"+i['data_type']+','
+		j += 1
+	dataSent +=  details['return_type']
+	print(dataSent)
 	s = socket.socket()
 	port = 12345
 	s.connect(('127.0.0.1', port))
-	s.send(str(details).encode())
+	s.send(dataSent.encode())
 	res =  s.recv(1024).decode()
 	return res
 	s.close()

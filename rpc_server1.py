@@ -2,6 +2,9 @@ import socket
 import json
 from server_procedures import *
 
+
+data = json.load(open("contract.json"))
+data = data["remote_procedures"]
 s = socket.socket()
 print ("Socket successfully created")
 port = 12345
@@ -15,27 +18,36 @@ while True:
 	funcString = c.recv(1024)
 	print(funcString.decode())
 	funcString = funcString.decode()
-	funcName = funcString.split('$')[0]
-	paramsList = funcString.split('$')[1].split(',')
-	params = paramsList[:len(paramsList)-1]
-	retType = funcString.split('$')[1].split(',')[-1]
-	print(funcName)
-	print(params)
-	print(retType)
+	print(type(funcString))
+	funcString = funcString.replace("'", "\"")
 
-	paramSent = []
-	for i in params:
-		type_param = i.split('-')[1]
-		x = (i.split('=')[1].split('-')[0])
-		if(i.split('=')[1].split('-')[1] == 'int'):
-			x = int(x)
-		paramSent.append(x)
-	print(paramSent)
+	funcDetails = json.loads(funcString)
+	print(type(funcDetails))
+	funcName = funcDetails["procedure_name"]
+	paramsList = funcDetails["parameters"]
+	retType = funcDetails["return_type"]
+
 	execString = funcName + "("
-	for i in range(len(paramSent)):
-		execString += "paramSent[" + str(i) + "], "
+	details = None
+	for x in data:
+		if(x["procedure_name"] == funcName):
+			details = x
+	
+	f = 0
+	if(details is None or len(paramsList) != len(details["parameters"])):
+		c.send(str("Invalid Function Call").encode())
+	else:
+		for i in range(len(paramsList)):
+			if(not isinstance(paramsList[i]["value"], eval(details["parameters"][i]["data_type"]))):
+				c.send(str("Invalid Function Call, Type Mismatched").encode())
+				f = 1
+				break
+			execString += "paramsList[" + str(i) + "]['value'], "
+
 	execString += ")"
+	print()
 	print(execString)
-	res = eval(execString)
-	print(res)
-	c.send(str(res).encode())
+	if(f == 0):
+		res = eval(execString)
+		print(res)
+		c.send(str(res).encode())
